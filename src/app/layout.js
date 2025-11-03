@@ -1,3 +1,4 @@
+import Header from "./components/Header";
 import "./globals.css";
 
 export const metadata = {
@@ -9,9 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <header>
-          <h2 className="site-title">Ecommerce Mini</h2>
-        </header>
+        <Header />
         <main>{children}</main>
         <footer>
           <p>© 2025 Ecommerce Mini</p>
