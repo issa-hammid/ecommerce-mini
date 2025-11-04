@@ -14,8 +14,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   // Header and footer are displayed on all pages
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <CartProvider>
           <Header />
         <main>{children}</main>

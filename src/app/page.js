@@ -36,6 +36,7 @@ export default function HomePage() {
           padding: "20px",
         }}
       >
+        {/*Show 8 skeleton cards while loading products data */}
        {loading ? (
   Array(8).fill().map((_, i) => <ProductSkeleton key={i} />)
 ) : (

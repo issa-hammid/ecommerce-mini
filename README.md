@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ecommerce Mini App – Next.js Frontend Task
 
-## Getting Started
+A minimal **e-commerce mini app** built with **Next.js (App Router)** and **React**  
+to demonstrate key frontend concepts such as hooks, context, dynamic routes, and component communication.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project is part of a frontend task requiring the implementation of **1–2 e-commerce features** using React and Next.js fundamentals.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Implemented Features:
+1. **Product Listing Page** with product fetching and skeleton loading.
+2. **Product Details Page** with “Add to Cart” functionality.
+3. **Global Cart Context** for managing cart state across pages.
+4. **Toast Notifications** using `react-toastify` for better UX.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Core Concepts Demonstrated
 
-To learn more about Next.js, take a look at the following resources:
+| Concept | Where Implemented | Description |
+|----------|-------------------|--------------|
+| **useState** | In `page.js`, `ProductDetailsPage`, and `CartContext` | Manage component and global states like products, loading, and cart items. |
+| **useEffect** | In `page.js` and `ProductDetailsPage` | Fetch products from the Fake Store API on mount. |
+| **useContext** | In all components using `useCart()` | Share cart state globally (count, add/remove, quantity). |
+| **Dynamic Route** | `/product/[id]/page.js` | Displays individual product details dynamically. |
+| **Props (Parent → Child)** | `HomePage → ProductCard` | Passes each product as props to display data. |
+| **Callback (Child → Parent)** | `ProductCard → HomePage` (via `showToast`) | Demonstrates child-to-parent communication by triggering toast messages in parent from child actions. |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Features Implemented
 
-## Deploy on Vercel
+### Product Listing
+- Fetches product data from [FakeStoreAPI](https://fakestoreapi.com/products).
+- Displays a responsive grid of product cards.
+- Uses a **loading skeleton** until data is fetched.
+- Each product links to its **details page** via dynamic routing.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Product Details Page
+- Dynamic route: `/product/[id]`.
+- Displays product image, title, description, and price.
+- "Add to Cart" button integrated with global `CartContext`.
+- Triggers toast notification on add (demonstrating callback communication).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Cart Context (Global State)
+- Implemented in `src/app/context/CartContext.js`.
+- Functions: `addToCart`, `removeFromCart`, `increaseQuantity`, `decreaseQuantity`.
+- Provides total cart count to the **Header**.
+- Accessible from any component using `useCart()` hook.
+
+### Toast Notifications
+- Added using [`react-toastify`]
+- Shows feedback messages when adding products to the cart.
+- Improves user experience and demonstrates child-to-parent event handling.
+
+---
+
+## Technologies Used
+
+- **Next.js +** (App Router)
+- **React 18**
+- **react-toastify** – for user notifications
+- **Fake Store API** – for mock product data
+- **CSS Modules** – for scoped component styling
