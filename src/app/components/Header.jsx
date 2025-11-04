@@ -3,7 +3,11 @@
 import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 // import "../../app/globals.css";
-export default function Header({ cartCount = 0 }) {
+import { useCart } from "../context/CartContext";
+
+export default function Header() {
+    //destruction
+    const {cartCount} = useCart()
   return (
     <header className="site-header">
       <div className="header-inner">
@@ -12,12 +16,12 @@ export default function Header({ cartCount = 0 }) {
         </Link>
 
         <nav className="header-actions">
-          <button className="cart-btn" aria-label="Open cart">
+          <Link href="/cart" className="cart-btn" aria-label="Open cart">
             <AiOutlineShoppingCart size={22} />
-            <span className="cart-badge" aria-hidden={cartCount === 0}>
+            <span className="cart-badge">
               {cartCount}
             </span>
-          </button>
+          </Link>
         </nav>
       </div>
     </header>

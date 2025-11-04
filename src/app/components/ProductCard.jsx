@@ -1,8 +1,13 @@
 import "./ProductCard.css";
 import Link from "next/link";
-export default function ProductCard({ product }) {
-  const handleAddToCart = () => {
-    alert(`${product.title} added to cart! 🛒`);
+// Using context to access the global addToCart function
+import { useCart } from "../context/CartContext";
+export default function ProductCard({ product, showToast }) {
+  const {addToCart} = useCart()
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    showToast(`${product.title.slice(0, 25)}... added to cart!`);
   };
 
   return (
@@ -19,7 +24,8 @@ export default function ProductCard({ product }) {
 
           <p className="product-price">${product.price.toFixed(2)}</p>
         </Link>
-        <button className="add-to-cart-btn" onClick={handleAddToCart}>
+        {/*When button is clicked, product is added to the cart*/} 
+       <button className="add-to-cart-btn" onClick={()=> handleAddToCart(product)}>
           Add to Cart
         </button>
       </div>
